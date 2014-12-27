@@ -1,0 +1,2 @@
+javac -d bin/ -cp src src/org/main/Run.java
+java -cp bin org.main.Run

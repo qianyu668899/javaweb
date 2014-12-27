@@ -4,6 +4,7 @@
 package org.main;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import org.lottery.ball.Data;
 import org.lottery.control.Control;
@@ -19,7 +20,11 @@ public class Run {
 	/**
 	 * @param args
 	 */
-	public static void panel()
+	public static boolean isNumeric(String str){ 
+	    Pattern pattern = Pattern.compile("[0-9]*"); 
+	    return pattern.matcher(str).matches();    
+	 } 
+	public static void main_panel()
 	{
 		String mainBoard="====================================\n"+
 	                     "                WELCOME             \n"+
@@ -36,7 +41,17 @@ public class Run {
 		{
 			System.out.println(mainBoard);
 			Scanner choice = new Scanner(System.in);
-			int num = choice.nextInt();
+			String str = choice.next();
+			int num=0;
+			if(isNumeric(str))
+			{
+				num = Integer.parseInt(str);
+			}
+			else
+			{
+				System.out.println("Wrong Command");
+				num = 5;
+			}
 			if(num<0 || num>7)
 			{
 				num = -1;
@@ -82,9 +97,8 @@ public class Run {
 		}
 	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//panel();
-		SimpleTest.test();
+		main_panel();//runnable console program
+		//SimpleTest.test();//an overall test 
 		
 	}
 
